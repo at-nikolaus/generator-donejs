@@ -40,7 +40,7 @@ module.exports = BaseGenerator.extend({
       validate: utils.validateRequired,
       when: !this.options.name
     }).then(function(first) {
-      var name = this.options.name = this.options.name || first.name;
+      var name = this.options.name || first.name;
       name = this.options.name = name.replace(/\/$/, "");
 
       this.isDoneComponent = this.options.name.indexOf('.component') !== -1;
