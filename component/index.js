@@ -41,10 +41,10 @@ module.exports = BaseGenerator.extend({
       when: !this.options.name
     }).then(function(first) {
       var name = this.options.name = this.options.name || first.name;
+      name = this.options.name = name.replace(/\/$/, "");
 
       this.isDoneComponent = this.options.name.indexOf('.component') !== -1;
       this.options.name = name = name.replace('.component', '');
-
       var tag = _.kebabCase(name);
       var prompts = [{
         name: 'tag',
@@ -71,8 +71,8 @@ module.exports = BaseGenerator.extend({
     if(!pkg) {
       return;
     }
-
-    var parts = _.map( this.options.name.split('/'), _.trim );
+    this.options.name = this.options.name.replace(/ /g,'');
+    var parts = this.options.name.split('/');
     var name = _.last(parts);
     var folder = _.get(pkg, 'steal.directories.lib') || "./";
     var appName = _.get(pkg, 'name');
