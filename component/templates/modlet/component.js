@@ -1,16 +1,12 @@
 import Component from 'can-component';
-import DefineMap from 'can-define/map/';
+import ViewModel from './vm';
 import './<%= name %>.less';
 import view from './<%= name %>.stache';
 
-export const ViewModel = DefineMap.extend({
-  message: {
-    value: 'This is the <%= tag %> component'
-  }
-});
-
-export default Component.extend({
+export const component = {
   tag: '<%= tag %>',
   ViewModel,
   view
-});
+}
+
+export default Component.extend(component);
