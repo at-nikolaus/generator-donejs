@@ -189,36 +189,7 @@ module.exports = BaseGenerator.extend({
     }
 
     if(!this.options.packages) {
-      // EQ donejs-cli 1.10.0
-      this.options.packages = {
-          "dependencies": {
-            "can-component": "^3.3.5",
-            "can-connect": "^1.5.9",
-            "can-define": "^1.5.3",
-            "can-route": "^3.2.3",
-            "can-route-pushstate": "^3.1.2",
-            "can-set": "^1.3.2",
-            "can-stache": "^3.11.1",
-            "can-view-autorender": "^3.1.1",
-            "can-zone": "^0.6.13",
-            "done-autorender": "^1.4.0",
-            "done-component": "^1.0.0",
-            "done-css": "^3.0.1",
-            "done-serve": "^1.5.0",
-            "generator-donejs": "^1.0.7",
-            "steal": "^1.5.15",
-            "steal-less": "^1.2.0",
-            "steal-stache": "^3.1.2"
-          },
-          "devDependencies": {
-            "can-fixture": "^1.1.1",
-            "donejs-cli": "^1.0.0",
-            "funcunit": "^3.2.0",
-            "steal-qunit": "^1.0.1",
-            "steal-tools": "^1.9.1",
-            "testee": "^0.3.0"
-          }
-      }
+      this.options.packages = JSON.parse(require('../donejs.json')).versions.pop()
     }
 
     var deps = this.options.packages.dependencies;
@@ -233,7 +204,7 @@ module.exports = BaseGenerator.extend({
       name: this.props.authorName,
       email: this.props.authorEmail,
       website: this.props.authorUrl,
-      defaultLicense: 'MIT'
+      defaultLicense: 'Apache-2.0'
     });
 
     this.mainFiles.forEach(function(name) {
