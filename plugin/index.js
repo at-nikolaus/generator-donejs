@@ -164,7 +164,7 @@ module.exports = BaseGenerator.extend({
     }
 
     if(!this.options.packages) {
-      throw new Error('No DoneJS dependency package list provided!');
+      this.options.packages = JSON.parse(require('../donejs.json')).versions.pop()
     }
 
     var getDependency = function(name) {
